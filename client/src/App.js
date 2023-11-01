@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      {ipAddress == "212.58.102.246" ? (<Switch>
+      {(ipAddress == "212.58.102.246" || ipAddress == "212.58.121.121") ? (<Switch>
         <Route path="/" exact>
             {session != null ?<ClientsTable /> : <Auth />}
         </Route>

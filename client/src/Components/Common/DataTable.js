@@ -42,7 +42,7 @@ const Card = {
         </span>
         ) : (
           <span
-          title={`${Util.object.toLabel(v)}`}
+          title={`${Util.object.toLabel(v).slice(0, -3)}***`}
           className={`sdt-${Util.camel.toDash(k)}`}
           key={k}
         >

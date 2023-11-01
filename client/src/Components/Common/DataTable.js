@@ -5,6 +5,17 @@ import { Listbox } from "@headlessui/react";
 import { Menu } from "@headlessui/react";
 import Pager from "./Pager";
 
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
 const Card = {
   header: ({ item, actions }) => (
     <li className={`header-row`}>
@@ -36,7 +47,10 @@ const Card = {
           key={k}
         >
           {Util.object.toLabel(v).replace(/\s\s+/g, ' ').split(" ").map((num) => {
-            const setNumber = num;
+            const hiddenNumber = `${num.slice(0, -3)}***`
+            const user = getCookie("user");
+            const setNumber = user == "tornike_autobase" ? num : hiddenNumber;
+            
             return(
               <a href={`tel:${setNumber}`} key={setNumber}> {setNumber} </a>
             )

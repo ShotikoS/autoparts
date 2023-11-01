@@ -37,7 +37,8 @@ const Auth = () => {
             .then((response) => {
                 response = response.data;
                 if(response.access !== "danied") {
-                    setCookie("sessionId", response.sessionId)
+                    setCookie("sessionId", response.sessionId);
+                    setCookie("user", formData.userName);
                     window.location.reload();
                 }
             })

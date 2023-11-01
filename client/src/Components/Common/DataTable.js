@@ -8,10 +8,10 @@ import Pager from "./Pager";
 function getCookie(name) {
   var nameEQ = name + "=";
   var ca = document.cookie.split(';');
-  for(var i=0;i < ca.length;i++) {
-      var c = ca[i];
-      while (c.charAt(0)==' ') c = c.substring(1,c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
   return null;
 }
@@ -31,33 +31,44 @@ const Card = {
   ),
   item: ({ item, actions }) => (
     <li className={item.selected === true ? `data-row red-bg` : `data-row`}>
-      {Object.entries(item).map(([k, v]) => (
-        Util.camel.toDash(k) !== "phone" ? (
-          <span
-          title={`${Util.object.toLabel(v)}***`}
-          className={`sdt-${Util.camel.toDash(k)}`}
-          key={k}
-        >
-          {Util.object.toLabel(v)}
-        </span>
-        ) : (
-          <span
-          title={`${Util.object.toLabel(v).slice(0, -3)}***`}
-          className={`sdt-${Util.camel.toDash(k)}`}
-          key={k}
-        >
-          {Util.object.toLabel(v).replace(/\s\s+/g, ' ').split(" ").map((num) => {
-            const hiddenNumber = `${num.slice(0, -3)}***`
-            const user = getCookie("user");
-            const setNumber = user == "tornike_autobase" ? num : hiddenNumber;
-            
-            return(
-              <a href={`tel:${setNumber}`} key={setNumber}> {setNumber} </a>
-            )
-          })}
-        </span>
+      {Object.entries(item).map(([k, v]) => {
+        let phones = ""
+        if(Util.camel.toDash(k) == "phone"){
+          const pns = Util.object.toLabel(v).split(" ").map((p) => {
+            const ch = `${p.slice(0, -3)}***`;
+            phones += ch;
+            return `${p.slice(0, -3)}***`;
+          })
+        }
+
+        return (
+          Util.camel.toDash(k) !== "phone" ? (
+            <span
+              title={`${Util.object.toLabel(v)}***`}
+              className={`sdt-${Util.camel.toDash(k)}`}
+              key={k}
+            >
+              {Util.object.toLabel(v)}
+            </span>
+          ) : (
+            <span
+              title={phones}
+              className={`sdt-${Util.camel.toDash(k)}`}
+              key={k}
+            >
+              {Util.object.toLabel(v).replace(/\s\s+/g, ' ').split(" ").map((num) => {
+                const hiddenNumber = `${num.slice(0, -3)}***`
+                const user = getCookie("user");
+                const setNumber = user == "tornike_autobase" ? num : hiddenNumber;
+
+                return (
+                  <a href={`tel:${setNumber}`} key={setNumber}> {setNumber} </a>
+                )
+              })}
+            </span>
+          )
         )
-      ))}
+      })}
       {!Util.object.isEmpty(actions.individual) && (
         <Menu as="span" className="sdt-actions">
           <Menu.Button as="div" className="sdt-actions-toggle">
@@ -192,12 +203,12 @@ const SimpleDataTable = ({
 
   Object.entries(actions.individual).forEach(
     ([k, v]) =>
-      (actions.individual[k] = Util.object.isObject(v)
-        ? v
-        : {
-            action: v,
-            enabled: () => true,
-          })
+    (actions.individual[k] = Util.object.isObject(v)
+      ? v
+      : {
+        action: v,
+        enabled: () => true,
+      })
   );
 
   cardHeader = cardHeader ? cardHeader : Util.func.empty;

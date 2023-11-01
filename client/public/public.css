@@ -1,0 +1,102 @@
+.modal-container{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-backgrop{
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+}
+.modal-content{
+    width: 95%;
+    height: 90vh;
+    max-width: 800px;
+    max-height: 500px;
+    background: white;
+    position: absolute;
+    z-index: 111111;
+    border-radius: 10px;
+}
+.title{
+    font-size: 22px;
+    padding-top: 30px;
+    text-align: center;
+    color: rgb(29, 29, 29);
+}
+.close-image{
+    width: 20px;
+    cursor: pointer;
+}
+.modal-head{
+    width: 100%;
+    position: absolute;
+    padding-right: 15px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+.form-field-container{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.form-fields-column{
+    width: 45%;
+    margin-top: 40px;
+}
+.form-fields{
+    display: flex;
+    flex-direction: column;
+}
+.form-fields label, .comments-label{
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.modal-form-control{
+    height: 32px;
+    margin-top: 5px;
+    border-radius: 4px;
+    padding-left: 5px;
+    border: 1px solid rgb(197, 197, 197);
+    outline: none;
+    font-size: 17px;
+}
+.comments-container{
+    width: 95%;
+}
+.sdt-model, .sdt-comment{
+    flex: 2 !important;
+}
+.sdt--id{
+    flex: 0.1 !important;
+}
+.comments-field{
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    outline: none;
+}
+.form-submit-container{
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.form-submit-button{
+    width: 150px;
+    height: 30px;
+    background: red;
+    border: red;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 6px;
+}

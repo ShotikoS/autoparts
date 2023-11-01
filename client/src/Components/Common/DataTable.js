@@ -34,7 +34,7 @@ const Card = {
       {Object.entries(item).map(([k, v]) => (
         Util.camel.toDash(k) !== "phone" ? (
           <span
-          title={`${Util.object.toLabel(v)}`}
+          title={`${Util.object.toLabel(v)}***`}
           className={`sdt-${Util.camel.toDash(k)}`}
           key={k}
         >

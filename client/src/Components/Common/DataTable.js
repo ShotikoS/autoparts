@@ -62,7 +62,7 @@ const Card = {
                 const setNumber = user == "tornike_autobase" ? num : hiddenNumber;
 
                 return (
-                  <a href={`tel:${setNumber}`} key={setNumber}> {setNumber} </a>
+                  <a href={`tel:${num}`} key={setNumber}> {setNumber} </a>
                 )
               })}
             </span>

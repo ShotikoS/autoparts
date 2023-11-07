@@ -44,7 +44,7 @@ const Card = {
         return (
           Util.camel.toDash(k) !== "phone" ? (
             <span
-              title={`${Util.object.toLabel(v)}***`}
+              title={`${Util.object.toLabel(v)}`}
               className={`sdt-${Util.camel.toDash(k)}`}
               key={k}
             >
@@ -52,12 +52,12 @@ const Card = {
             </span>
           ) : (
             <span
-              title={phones}
+              title={Util.object.toLabel(v)}
               className={`sdt-${Util.camel.toDash(k)}`}
               key={k}
             >
               {Util.object.toLabel(v).replace(/\s\s+/g, ' ').split(" ").map((num) => {
-                const hiddenNumber = `${num.slice(0, -3)}***`
+                const hiddenNumber = `${num.slice(0, 3)}**${num.slice(5)}`;
                 const user = getCookie("user");
                 const setNumber = user == "tornike_autobase" ? num : hiddenNumber;
 
